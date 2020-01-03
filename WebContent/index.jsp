@@ -13,16 +13,16 @@
 	<h1> 文字识别系统 </h1>
 </div>
 
-<!-- 选择本地图片 -->
-<div class="file">选择本地图片
-	<input type="file"  name="" id="input_file" onchange="selectImage(this);">
-</div>
-
 <!-- 提交加载条 -->
 <div id="cisLoading">
 	<img src="imgs/loading.gif" style="width:100%;height:100%" />
 </div>
 
+
+<!-- 选择本地图片 -->
+<div class="file">选择本地图片
+	<input type="file" title="选择本地图片"  name="" id="input_file" onchange="selectImage(this);">
+</div>
 
 <!-- 选项区域 -->
 <div class="inpit">
@@ -47,28 +47,28 @@
 
 <!-- 按钮区域 -->
  <div class="col-half">
-   <div class="btn bubble left" onclick="readImage()">读取图片</div>
-   <div class="btn bubble left" onclick="startRecognition()">开始识别</div>
+   <div class="btn bubble left" title="读取图片" onclick="readImage()">读取图片</div>
+   <div class="btn bubble left" title="开始识别" onclick="startRecognition()">开始识别</div>
  </div>
 
 <!-- 识别图片区域 -->
-<div style="float:left;width:50%;height:350px;margin-left:80px;margin-top:20px;">
+<div style="float:left;width:40%;height:350px;margin-left:calc(8vw);margin-top:20px;" title="识别图片区域">
 	<img src="imgs/bg.jpg" id="recognition_image" style="border-radius:5px;width:100%;height:100%;overflow: hidden;">
 </div>
 	
 <!-- 识别结果区域 -->
-<div id="container">
+<div id="container" title="识别结果区域">
 	<div class="product-image">
 		<!-- product Information-->
 		<div class="info" id="general_basic">
-			<h2>通用文字识别</h2>
+			<h2>通用文字识别结果</h2>
 			<ul>
 				<li id="words_general_basic"><strong >待识别</strong></li>
 			</ul>
 		</div>
 		
 		<div class="info" style="display:none;" id="idcard">
-			<h2>身份证识别</h2>
+			<h2>身份证识别结果</h2>
 			<ul>
 				<li id="xm"><strong>姓名：</strong></li>
 				<li id="xb"><strong>性别：</strong></li>
@@ -80,7 +80,7 @@
 		</div>
 		
 		<div class="info" style="display:none;" id="receipt">
-			<h2>通用发票识别</h2>
+			<h2>通用发票识别结果</h2>
 			<ul>
 				<li id="dm"><strong>发票代码：</strong></li>
 				<li id="hm"><strong>发票号码：</strong></li>
@@ -94,7 +94,7 @@
 		</div>
 		
 		<div class="info" style="display:none;" id="license_plate">
-			<h2>车牌识别</h2>
+			<h2>车牌识别结果</h2>
 			<ul>
 				<li id="number"><strong>车牌号：</strong></li>
 				<li id="color"><strong>颜色：</strong></li>
@@ -146,7 +146,7 @@
 			type:"POST",
 			dataType:"json",
 			data: current,
-			url:"/Ocr/OcrServlet",
+			url:"/Ocr/OcrServlet?method=startRecognition",
 			success: function (result) {
 			 	if (result.status == "true") {
                 	console.log("SUCCESS");
@@ -243,6 +243,28 @@
             image = evt.target.result;
         }
         reader.readAsDataURL(file.files[0]);
+        
+        var formData = new FormData(); 
+        formData.append("photo", file.files[0]); 
+         $.ajax({ 
+              contentType:"multipart/form-data", 
+              url:"/Ocr/OcrServlet?method=upload", 
+              type:"POST", 
+              data:formData, 
+              dataType:"json", 
+              processData: false, // 告诉jQuery不要去处理发送的数据 
+              contentType: false, // 告诉jQuery不要去设置Content-Type请求头 
+              success: function(result){ 
+            	  if (result.status == "true") {
+                  	console.log("SUCCESS");
+                  }else{
+                  	console.log("FAILURE");
+                  }
+        	  },
+        	  error:function(){
+        		  alert("上传失败");
+        	  }
+        }); 
     }
 	
 	

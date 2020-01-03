@@ -17,10 +17,10 @@ body {
 	overflow: hidden;
 	display: inline;
 	float: right;
-	margin-right:80px;
+	margin-right:calc(8vw);;
 	margin-top:20px;
 	height: 350px;
-	width: 450px;
+	width: 40%;
 }
 
 
@@ -71,10 +71,14 @@ body {
 	background-color: rgba(156, 86, 241, 0.1)
 }
 
+.inpit{
+	margin-left:25%;
+	width:50%;
+	max-width:50%;
+}
 .limitHeight{
 	height:100px;
 	border-radius: 5px;
-	margin-left:80px;
 }
 .inpit .li {
 	margin: 0 auto;
@@ -123,7 +127,7 @@ body {
 .inpit>div {
 	position: relative;
 	overflow: hidden;
-	width: 680px;
+	/*width: 680px;*/
 	display: flow-root;
 	background-color: #fff;
 	padding: 10px 30px 50px 30px;
@@ -134,10 +138,10 @@ body {
 .inpit .insideonelist {
 	background-color: rgb(156, 86, 241);
 	border-radius: 50px;
-	font-size: 20px;
+	font-size: 1rem;
 	color: #fff;
 	width: 100%;
-	max-width: 400px;
+	/*max-width: 400px;*/
 	margin: 10px auto;
 	border: #000000;
 	padding: 10px 0;
@@ -246,19 +250,22 @@ body {
 
 .col-half {
   position:absolute;
-  margin-top:-200px;
-  right:90px;	
-
+  margin-top:-190px;
+  right:8.5%;
+  width:12%;
  }
 
 .btn {
   border-radius: 5px;
   position:relative;
   margin: 25px auto;
-  font-size: 25px;
+  font-size:1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: #fff;
   padding: 20px;
-  width: 150px;
+  /*width: 150px;*/
   overflow: hidden;
   text-align: center;
   cursor: pointer;
@@ -368,11 +375,10 @@ body {
   transition: 0s;
 }
 .btn:hover {
-    background: #734ca4;
+    background: #c0a1e7;
     color: #004974;
     text-decoration: none;
 }
-
 
 
 #cisLoading {
@@ -390,21 +396,25 @@ body {
 .file {
     position: absolute;
     display: inline-block;
-    background: #3598db;
+    background: #86bd04;
     border-radius: 5px;
     padding: 4px 12px;
     overflow: hidden;
     color: #fff;
     text-decoration: none;
     text-indent: 0;
-    width:170px;
+    width:12%;
+    left:8.5%;
     height:70px;
     background-size: 100%;
-    margin-left:80px;
-    font-size:25px;
+    font-size:1.5rem;/*16px = 1rem*/
     text-align:center;
     vertical-align:middle;
     line-height: 70px;
+    top:130px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .file input {
     position:absolute ;
@@ -416,7 +426,7 @@ body {
     opacity: 0;
 }
 .file:hover {
-    background: #734ca4;
+    background: #c0a1e7;
     color: #004974;
     text-decoration: none;
 }
